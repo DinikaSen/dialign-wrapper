@@ -1,0 +1,39 @@
+{
+  "name": "dialign-wrapper",
+  "version": "1.0.0",
+  "description": "A node module that wraps functionality of Dialign multiple sequence alignment program ",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DinikaSen/dialign-wrapper.git"
+  },
+  "dependencies": {
+    "download-file": "^0.1.5",
+    "targz": "^1.0.1",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.1.1",
+    "test-console": "^1.1.0"
+  },
+  "keywords": [
+    "bioinformatics",
+    "sequence",
+    "alignment"
+  ],
+  "author": "Dinika Senarath",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DinikaSen/dialign-wrapper/issues"
+  },
+  "homepage": "https://github.com/DinikaSen/dialign-wrapper#readme"
+}
