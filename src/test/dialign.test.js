@@ -9,34 +9,33 @@ NOTE : The environment variable paths are set by default unless user has changed
 */
 
 require('mocha');
-expect = require('chai').expect;
-should = require('chai').should();
-var stdout = require("test-console").stdout;
-var stderr = require("test-console").stderr;
-var resolve = require('path').resolve;
 const assert = require('assert');
+import { expect } from 'chai';
+import {should} from 'chai';
+import {stdout} from "test-console";
+import {resolve} from 'path';
 
-var restoreStdout;
+let restoreStdout;
 
-var dialign = require('../lib/dialign');
+import dialign from '../lib/dialign';
 
 
 describe('#Set custom execution path', function () {
 
     it('customExecLocation should be set', function (done) {
-        var location = 'util/bin/dialign_package/src';
+        let location = 'src/util/bin/dialign_package/src';
         restoreStdout = stdout.ignore();
         dialign.setCustomLocation(location);
         restoreStdout();
-        dialign.customExecLocation.should.equal(resolve(location));
+        assert.deepEqual(dialign.customExecLocation, resolve(location));
         done();
     });
     it('CustomExecLocation should not be set', function (done) {
-        var location = 'lib';
+        let location = 'lib';
         restoreStdout = stdout.ignore();
         dialign.setCustomLocation(location);
         restoreStdout();
-        dialign.customExecLocation.should.not.equal(resolve(location));
+        assert.notDeepEqual(dialign.customExecLocation, resolve(location));
         done();
     });
 });
@@ -44,27 +43,27 @@ describe('#Set custom execution path', function () {
 describe('#Set custom environment variable path', function () {
 
     it('customEnvVarPath should be set', function (done) {
-        var location = 'util/bin/dialign_package/dialign2_dir';
+        let location = 'src/util/bin/dialign_package/dialign2_dir';
         restoreStdout = stdout.ignore();
         dialign.setEnvironmentVar(location);
         restoreStdout();
-        dialign.customEnvVarPath.should.equal(resolve(location));
+        assert.deepEqual(dialign.customEnvVarPath, resolve(location));
         done();
     });
     it('customEnvVarPath should not be set', function (done) {
-        var location = 'util';
+        let location = 'util';
         restoreStdout = stdout.ignore();
         dialign.setEnvironmentVar(location);
         restoreStdout();
-        dialign.customEnvVarPath.should.not.equal(resolve(location));
+        assert.notDeepEqual(dialign.customEnvVarPath, resolve(location));
         done();
     });
 });
 
 describe('#Align an unaligned sequence file', function () {
     it('should execute dialign command (output format = fasta)', function (done) {
-        var inspect = stdout.inspect();
-        dialign.alignSeqFile('test/samples/example.fasta', 'fasta', function (err) {
+        let inspect = stdout.inspect();
+        dialign.alignSeqFile('src/test/samples/example.fasta', 'fasta', function (err) {
             if (err) {
                 console.log(err);
             }
@@ -78,8 +77,8 @@ describe('#Align an unaligned sequence file', function () {
     });
 
     it('should execute dialign command (output format = clustalW)', function (done) {
-        var inspect = stdout.inspect();
-        dialign.alignSeqFile('test/samples/example.fasta', 'clustalW', function (err) {
+        let inspect = stdout.inspect();
+        dialign.alignSeqFile('src/test/samples/example.fasta', 'clustalW', function (err) {
             if (err) {
                 console.log(err);
             }
@@ -95,8 +94,8 @@ describe('#Align an unaligned sequence file', function () {
 
 describe('#Align a string input of sequences', function () {
     it('should execute dialign command (output format = fasta)', function (done) {
-        var inspect = stdout.inspect();
-        var input = '>test1\n' +
+        let inspect = stdout.inspect();
+        let input = '>test1\n' +
             'ACDEFGHIKLMNPQRSTVWY\n' +
             '>test2\n' +
             'XXXXACDEFGHIMNXXXPQRSTVWY\n' +
@@ -117,8 +116,8 @@ describe('#Align a string input of sequences', function () {
         });
     });
     it('should execute dialign command (output format = clustalW)', function (done) {
-        var inspect = stdout.inspect();
-        var input = '>test1\n' +
+        let inspect = stdout.inspect();
+        let input = '>test1\n' +
             'ACDEFGHIKLMNPQRSTVWY\n' +
             '>test2\n' +
             'XXXXACDEFGHIMNXXXPQRSTVWY\n' +
